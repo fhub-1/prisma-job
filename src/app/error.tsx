@@ -12,10 +12,11 @@ export default function Error() {
             404 error
           </p>
           <h1 className="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
-            We can’t find that page
+            We can&#39t find that page
           </h1>
           <p className="mt-4 text-gray-500 dark:text-gray-400">
-            Sorry, the page you are looking for doesn't exist or has been moved.
+            Sorry, the page you are looking for doesn&#39t exist or has been
+            moved.
           </p>
 
           <div className="mt-6 flex items-center gap-x-3">

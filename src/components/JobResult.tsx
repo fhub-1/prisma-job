@@ -54,7 +54,7 @@ export default async function JobResult({
       ))}
       {jobs.length === 0 && (
         <p className="m-auto text-center text-gray-500 dark:text-gray-400">
-          Sorry, the Job you are looking for doesn't exist or has been moved.
+          Sorry, the Job you are looking for doesn&#39t exist or has been moved.
         </p>
       )}
     </div>
