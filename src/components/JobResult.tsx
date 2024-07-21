@@ -2,7 +2,6 @@ import prisma from "@/lib/prisma";
 import { JobFilterValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
 import JobListitem from "./JobListitem";
-// import JobListItem from "./JobListItem";
 
 interface JobResultsProps {
   filterValues: JobFilterValues;

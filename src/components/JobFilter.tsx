@@ -42,7 +42,7 @@ export default async function JobFilter({ defaulvalues }: JobFilterSiderProps) {
 
   return (
     <aside className="sticky top-0 h-fit rounded-l border bg-background p-4 md:w-[260px]">
-      <form action={filterJob}>
+      <form action={filterJob} key={JSON.stringify(defaulvalues)}>
         <div className="space-y-4">
           <div className="flex flex-col gap-2">
             <Label htmlFor="q">Search</Label>
