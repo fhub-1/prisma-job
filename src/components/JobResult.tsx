@@ -1,13 +1,14 @@
 import prisma from "@/lib/prisma";
-import JobListitem from "./JobListitem";
 import { JobFilterValues } from "@/lib/validation";
 import { Prisma } from "@prisma/client";
+import JobListitem from "./JobListitem";
+// import JobListItem from "./JobListItem";
 
 interface JobResultsProps {
   filterValues: JobFilterValues;
 }
 
-export default async function JobResult({
+export default async function JobResults({
   filterValues: { q, type, location, remote },
 }: JobResultsProps) {
   const searchString = q
@@ -15,7 +16,7 @@ export default async function JobResult({
     .filter((word) => word.length > 0)
     .join(" & ");
 
-  const searchFliter: Prisma.JobWhereInput = searchString
+  const searchFilter: Prisma.JobWhereInput = searchString
     ? {
         OR: [
           { title: { search: searchString } },
@@ -29,7 +30,7 @@ export default async function JobResult({
 
   const where: Prisma.JobWhereInput = {
     AND: [
-      searchFliter,
+      searchFilter,
       type ? { type } : {},
       location ? { location } : {},
       remote ? { locationType: "Remote" } : {},
@@ -38,23 +39,18 @@ export default async function JobResult({
   };
 
   const jobs = await prisma.job.findMany({
-    //   TODO CHANGEING WHERE TO ABOVE CREATED VALUE
     where,
-    // where: {
-    //   approved: true,
-    // },
-    orderBy: {
-      createdAt: "desc",
-    },
+    orderBy: { createdAt: "desc" },
   });
+
   return (
     <div className="grow space-y-4">
       {jobs.map((job) => (
         <JobListitem job={job} key={job.id} />
       ))}
       {jobs.length === 0 && (
-        <p className="m-auto text-center text-gray-500 dark:text-gray-400">
-          Sorry, the Job you are looking for doesn&#39t exist or has been moved.
+        <p className="m-auto text-center">
+          No jobs found. Try adjusting your search filters.
         </p>
       )}
     </div>
